@@ -1,0 +1,9 @@
+k create secret generic db-secret --from-literal=DB_User=root --from-literal=DB_Password=pswrd --from-literal=DB_Host=sql01 --dry-run=client -o yaml > db-secret.yaml 
+k apply -f db-secret.yaml 
+
+k create deploy mysql --image=mysql --dry-run=client -o yaml > mysql-deploy.yaml
+k apply -f mysql-deploy.yaml
+k expose deployment webapp-mysql --type=NodePort --port=8080
+
+k create svc clusterip mysql --tcp=3306:3306 --dry-run=client -o yaml > mysql-service.yaml
+k apply -f mysql-service.yaml 

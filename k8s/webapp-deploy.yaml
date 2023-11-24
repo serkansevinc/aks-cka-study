@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webapp-mysql
+  name: webapp-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-mysql
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webapp-mysql
+    spec:
+      containers:
+      - image: kodekloud/simple-webapp-mysql
+        name: simple-webapp-mysql
+        resources: {}
+status: {}

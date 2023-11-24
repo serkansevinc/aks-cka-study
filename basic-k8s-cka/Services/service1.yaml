@@ -1,0 +1,19 @@
+# NodePort service 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service1
+
+spec:
+
+  type: NodePort
+  ports: 
+    - targetPort: 80 # port on the pod
+      port: 80   # port on the service object
+      nodePort: 30001 # port to be used on the Node
+    
+
+  selector: # # POD labels go here. This is how we link the Pods to the services. 
+    app: nginx
+    tier: dev
